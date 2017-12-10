@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="auntcomingModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aunt">
+          <Key>
+            <PropertyRef Name="Aunt_id" />
+            <PropertyRef Name="Auntname" />
+            <PropertyRef Name="Aunt_phone" />
+            <PropertyRef Name="Aunt_paypal" />
+          </Key>
+          <Property Name="Aunt_id" Type="int" Nullable="false" />
+          <Property Name="Auntname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Aunt_email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Aunt_phone" Type="int" Nullable="false" />
+          <Property Name="Aunt_paypal" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aunt_id" Type="int" Nullable="false" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Auntname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Aunt_paypal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="User_paypal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Aunt_phone" Type="int" Nullable="false" />
+          <Property Name="User_phone" Type="int" Nullable="false" />
+          <Property Name="Payment" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="User-phone" />
+            <PropertyRef Name="User_paypal" />
+          </Key>
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="User-phone" Type="int" Nullable="false" />
+          <Property Name="User_email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="User_paypal" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6035: 关系“Aunt_id”在关系主端上有一些列不属于表的键的一部分。已排除了此关系。
+        <Association Name="Aunt_id" />-->
+        <!--生成过程中发现错误:
+警告 6035: 关系“User_id”在关系主端上有一些列不属于表的键的一部分。已排除了此关系。
+        <Association Name="User_id" />-->
+        <EntityContainer Name="auntcomingModelStoreContainer">
+          <EntitySet Name="aunt" EntityType="Self.aunt" Schema="auntcoming" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="auntcoming" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="auntcoming" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="auntcomingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aunt">
+          <Key>
+            <PropertyRef Name="Aunt_id" />
+            <PropertyRef Name="Auntname" />
+            <PropertyRef Name="Aunt_phone" />
+            <PropertyRef Name="Aunt_paypal" />
+          </Key>
+          <Property Name="Aunt_id" Type="Int32" Nullable="false" />
+          <Property Name="Auntname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aunt_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aunt_phone" Type="Int32" Nullable="false" />
+          <Property Name="Aunt_paypal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aunt_id" Type="Int32" Nullable="false" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Auntname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aunt_paypal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_paypal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aunt_phone" Type="Int32" Nullable="false" />
+          <Property Name="User_phone" Type="Int32" Nullable="false" />
+          <Property Name="Payment" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="User_id" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="User_phone" />
+            <PropertyRef Name="User_paypal" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_phone" Type="Int32" Nullable="false" />
+          <Property Name="User_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_paypal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="auntcomingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aunts" EntityType="Self.aunt" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="auntcomingModelStoreContainer" CdmEntityContainer="auntcomingEntities">
+          <EntitySetMapping Name="aunts">
+            <EntityTypeMapping TypeName="auntcomingModel.aunt">
+              <MappingFragment StoreEntitySet="aunt">
+                <ScalarProperty Name="Aunt_id" ColumnName="Aunt_id" />
+                <ScalarProperty Name="Auntname" ColumnName="Auntname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Aunt_email" ColumnName="Aunt_email" />
+                <ScalarProperty Name="Aunt_phone" ColumnName="Aunt_phone" />
+                <ScalarProperty Name="Aunt_paypal" ColumnName="Aunt_paypal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="auntcomingModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="Aunt_id" ColumnName="Aunt_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Auntname" ColumnName="Auntname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Aunt_paypal" ColumnName="Aunt_paypal" />
+                <ScalarProperty Name="User_paypal" ColumnName="User_paypal" />
+                <ScalarProperty Name="Aunt_phone" ColumnName="Aunt_phone" />
+                <ScalarProperty Name="User_phone" ColumnName="User_phone" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="auntcomingModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_phone" ColumnName="User-phone" />
+                <ScalarProperty Name="User_email" ColumnName="User_email" />
+                <ScalarProperty Name="User_paypal" ColumnName="User_paypal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
